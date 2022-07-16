@@ -1,19 +1,18 @@
-# DDG Predictor with EGNN
+# Hierarchical Graph Invariant Network for Protein Property Prediction
 
-## Docker
+## Requriements
+```
+python 3.8
+torch >=1.9.0
+wandb
+numpy
+easydict
+```
 
-For V100:
-```
-mirrors.tencent.com/docker_coffeezhao/eghn_ubuntu16.04-cuda10.1-torch1.8.0-dgl0.7.0-pyg1.7.2_biopython_neural_tangents:latest
-```
-For A100:
-```
-mirrors.tencent.com/docker_coffeezhao/eghn_ubuntu16.04-cuda11.1-torch1.9.0-dgl0.7.0-pyg1.7.2_biopython_neural_tangents:latest
-```
-When using the distributed training in parallel/trainer.py, the latest accelerate should be reinstalled as (to be fixed ;) ):
+
+When using the distributed training in parallel/trainer.py, the latest accelerate should be installed:
 
 ```
-pip uninstall accelerate
 git clone https://github.com/huggingface/accelerate
 cd accelerate
 python setup.py install
@@ -31,7 +30,7 @@ python ./scripts/predict.py \
 ```
 
 
-### 2.Test helixon dataset
+### 2.Test the COVID-19 dataset
 ```bash
 python ./script/test.py \ 
         --model <model_ckpt_path> \
@@ -39,7 +38,8 @@ python ./script/test.py \
         --mut_pdb_dir <mut_pdbs_directory> \
         --wt_pdb <wt_pdb_path>
 ```
-### 3.End2end one mutation test
+### 3.End2end one mutation test with EvoEF2
+
 ```bash
 python ./script/e2e.py \ 
         --model <model_ckpt_path> \
@@ -105,7 +105,7 @@ where ddG is a float value,  data_wt/data_mut is the return of utils.protein.par
 
 | name | type   | description | 
 | ----- | --------- | ----------- |
-| res_encoder | String |  'mlp' for original DDGPredicor, 'egnn' for EGNN encoder       |
+| res_encoder | String |  'mlp' for an mlp atom encoder, 'egnn' for EGNN atom encoder       |
 | mode  |   String  | 'reg' for MSE loss, 'cla' for Cross Entropy Loss, 'gau' for Gaussian loss  |
 | k | Int |  number of neighbors nearby the mutation to be used  |
 | num_egnn_layers | Int |  number of EGNN layers, when res_encoder is 'egnn' |
@@ -117,6 +117,3 @@ All the parameters with their default value are in script/train.py
 
 Coming soon...
 
-## Contact
-
-Please contact luost[at]helixon.com for any questions related to the source code.
