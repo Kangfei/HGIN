@@ -114,6 +114,13 @@ where ddG is a float value,  data_wt/data_mut is the return of utils.protein.par
 All the parameters with their default value are in script/train.py
 
 ## Citation
-
-Coming soon...
+```
+@inproceedings{zhao2023geometric,
+  title={Geometric Graph Learning for Protein Mutation Effect Prediction},
+  author={Zhao, Kangfei and Rong, Yu and Jiang, Biaobin and Tang, Jianheng and Zhang, Hengtong and Yu, Jeffrey Xu and Zhao, Peilin},
+  booktitle={Proceedings of the 32nd ACM International Conference on Information and Knowledge Management},
+  pages={3412--3422},
+  year={2023}
+}
+```
 
